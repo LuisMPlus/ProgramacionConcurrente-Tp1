@@ -3,7 +3,7 @@ package Punto1;
 public class CuentaBancaria {
 
     //Atributos de clase
-    private static int id = 100001;
+    private static int id = 100000;
     private long numeroCuenta;
     private long dni;
     private double saldoActual;
@@ -11,15 +11,15 @@ public class CuentaBancaria {
 
     //Constructor por defecto
     CuentaBancaria() {
+        this.numeroCuenta = id++;
     }
 
     //Constructor con parametros
     CuentaBancaria(long dni, double saldoActual, float interesAnual) {
-        this.numeroCuenta = id;
+        this.numeroCuenta = id++;
         this.dni = dni;
         this.saldoActual = saldoActual;
         this.interesAnual = interesAnual;
-        ++id;
     }
 
     //Actualiza el saldo aplicando el interes diario (osea el interes anual)

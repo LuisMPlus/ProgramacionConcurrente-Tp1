@@ -31,7 +31,7 @@ public class CuentaSueldo extends CuentaBancaria {
     private int legajo;
     private String institucion;
     private String beneficios;
-    private int cbu;
+    private long cbu;
     private double tope;
     private String alias;
 
@@ -40,13 +40,14 @@ public class CuentaSueldo extends CuentaBancaria {
     }
 
     //constructor con parametros
-    public CuentaSueldo(int cbu, String alias, long dni, double saldoActual, float interesAnual) {
-        super(dni, saldoActual, interesAnual);
-        this.cbu = cbu;
-        this.tope = 15.000;
-        this.alias = alias;
+    public CuentaSueldo(String cbu) {
+        if(cbu.length() == 18 && cbu.matches(("[0-9]+"))) {
+            this.cbu = Long.parseLong(cbu);
+        }else {
+            System.out.println("El cbu debe ser 18 digitos y deben ser digitos");
+        }
+        this.tope = 15000;
     }
-
 
     @Override
     public void retirar(double cantidad){
@@ -54,7 +55,7 @@ public class CuentaSueldo extends CuentaBancaria {
         this.saldoActual -= cantidad;
     }
 
-    public void transferir(double monto, int cbu){
+    public void transferir(double monto, long cbu){
         this.validar(monto, "monto", true);
         this.saldoActual -= monto;
 
@@ -65,7 +66,11 @@ public class CuentaSueldo extends CuentaBancaria {
     public void transferir(double monto, String alias){
        this.validar(monto, "monto", true);
 
-        System.out.println("Transferencia exitosa a " + alias);
-        System.out.println("Saldo actual: " + this.saldoActual);
+       if(alias.contains(" ")){
+           System.out.println("EL alias no debe tener espacios");
+       }else {
+           System.out.println("Transferencia exitosa a " + alias);
+           System.out.println("Saldo actual: " + this.saldoActual);
+       }
     }
 }
