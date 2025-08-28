@@ -7,19 +7,17 @@ public class Circulo extends Forma {
         this.radio=radio;
     }
 
-
     public Circulo(String nombreForma) {
         super(nombreForma);
     }
 
     @Override
     public double area() {
-
         return Math.PI * radio * radio;
     }
+
     @Override
     public double perimetro() {
-
         return 2 * Math.PI * radio;
     }
 
